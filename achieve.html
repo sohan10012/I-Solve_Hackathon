@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Team Leaderboard - Top 20</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+      body {
+    font-family: Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background: linear-gradient(135deg, #38c16b, #99c97b);
+}
+
+        .leaderboard {
+    background: linear-gradient(135deg, #ffffff, #d6eaf8);
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    width: 450px;
+    max-width: 90%;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+}
+
+        .top-employees {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            align-items: center;
+            text-align: center;
+        }
+        .employee {
+
+            text-align: center;
+            width: 30%;
+            position: relative;
+        }
+        .avatar {
+            
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 30px;
+            color: white;
+            transition: transform 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .avatar:hover {
+            transform: scale(1.05);
+        }
+        .rank {
+            position:relative;
+            top: -10px;
+            right: 10px;
+            background-color: #ff6b6b;
+            color: white;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 14px;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        .name {
+            font-size: 12px;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        .score {
+            font-weight: bold;
+            color: #2c3e50;
+            font-size: 16px;
+        }
+        .other-employees {
+            flex-grow: 1;
+            overflow-y: auto;
+            margin-top: 20px;
+        }
+        .other-employee {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 15px;
+            border-radius: 10px;
+            transition: transform 0.2s ease;
+        }
+        .other-employee:hover {
+            transform: translateX(5px);
+        }
+        .other-employee-name {
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+        }
+        .other-employee-rank {
+            margin-right: 15px;
+            font-weight: bold;
+            font-size: 16px;
+            color: #fff;
+            background-color: #4a69bd;
+            width: 25px;
+            height: 25px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #2c3e50;
+            font-size: 24px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .logo {
+            text-align: right;
+            margin-top: 20px;
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .employee, .other-employee {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+        .employee-down{
+            margin-top: 50px;
+            
+        }
+       #third{
+        margin-right: 50px;
+       }
+       #second{
+        margin-left: 50px;
+       }
+    </style>
+</head>
+<body>
+    <div class="leaderboard">
+        <h1>Employee Leaderboard</h1>
+        <div class="top-employees">
+            <div class="employee-down"id="second">
+                <div class="avatar" style="background-color: #3498db;">
+                    👩‍💼
+                    <div class="rank">2</div>
+                </div>
+                <div class="name">Ramesh</div>
+                <div class="score">47Km</div>
+            </div>
+            <div class="employee">
+                <div class="avatar" style="background-color: #f1c40f;">
+                    👨‍💼
+                    <div class="rank">1</div>
+                </div>
+                <div class="name">Suresh </div>
+                <div class="score">50km</div>
+            </div>
+            <div class="employee-down" id="third" >
+                <div class="avatar" style="background-color: #e67e22;">
+                    👩‍💼
+                    <div class="rank">3</div>
+                </div>
+                <div class="name">Harish </div>
+                <div class="score">45km</div>
+            </div>
+        </div>
+        <div class="other-employees" id="otherEmployees"></div>
+        
+    </div>
+
+    <script>
+        const employees = [
+            { name: "Tushar", score: 40},
+            { name: "Shreesha", score: 35 },
+            { name: "Vivek", score: 30 },
+            { name: "Virat", score: 29},
+            { name: "Rahul", score: 28 },
+            { name: "Sophia Brown", score: 27},
+            { name: "Daniel Taylor", score: 26 },
+            { name: "Ava Anderson", score: 25},
+            { name: "William Thomas", score: 24 },
+            { name: "Mia Garcia", score: 23 },
+            { name: "James Jackson", score: 22 },
+            { name: "Charlotte Moore", score: 21 },
+            { name: "Benjamin White", score: 20 },
+            { name: "Amelia Harris", score: 19 },
+            { name: "Lucas Martin", score: 18 },
+            { name: "Harper Thompson", score: 17 },
+            { name: "Henry Davis", score: 16 }
+        ];
+
+        const otherEmployees = document.getElementById('otherEmployees');
+
+        employees.forEach((employee, index) => {
+            const employeeElement = document.createElement('div');
+            employeeElement.className = 'other-employee';
+            employeeElement.style.backgroundColor = index % 2 === 0 ? '#d6eaf8' : '#e8f6f3';
+            employeeElement.style.animationDelay = `${0.1 * (index + 1)}s`;
+
+            employeeElement.innerHTML = `
+                <div class="other-employee-name">
+                    <span class="other-employee-rank">${index + 4}</span>
+                    ${employee.name}
+                </div>
+                <div class="score">${employee.score.toLocaleString()}</div>
+            `;
+
+            otherEmployees.appendChild(employeeElement);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carpooling App</title>
+    <link rel="stylesheet" href="ride.css">
+</head>
+<body>
+    <main>
+        <div id="container-large">
+        <section id="offer-ride">
+            <h2>Offer a Ride</h2>
+            <form id="offer-ride-form">
+                <input type="text" placeholder="Origin" required>
+                <input type="text" placeholder="Destination" required>
+                <input type="date" required>
+                <input type="time" required>
+                <input type="number" placeholder="Number of Seats" required>
+                <input type="text" placeholder="Price (optional)">
+                <button type="submit">Offer Ride</button>
+            </form>
+        </section>
+        <section id="available-rides">
+            <h2>Available Rides</h2>
+            <div id="rides-list"></div>
+            <p>Available Rides Count: <span id="available-rides-count">0</span></p>
+        </section>
+
+        <section id="booked-rides">
+            <h2>Booked Rides</h2>
+            <div id="booked-list">None</div>
+            <p>Booked Rides Count: <span id="booked-rides-count">0</span></p>
+        </section>
+    </div>
+        <script src="ride.js"></script>
+    </main>
+</body>
+</html>

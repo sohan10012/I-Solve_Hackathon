@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    <title>RideShare - Search Page</title>
+    <style>
+        body {
+            font-family: "Nunito", sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(to bottom, #effaf0 , #d1e1d0, #c1d9c1);
+        }
+        .container {
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: #0a0707;
+            font-size: 50px;
+            text-align: center;
+        }
+        .search-form, .booked-rides {
+            background: #fff;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .search-form {
+            max-width: 400px;
+        }
+        .search-form input, .search-form select, .search-form button {
+            padding: 10px;
+            margin-right: 0;
+            margin-bottom: 0;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .search-form button {
+            background-color: #42ac42;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .search-form button:hover {
+            background-color: #a9e1a9;
+        }
+        #results {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            align-items: center;
+            justify-content: center;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .booked-rides-wrapper {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
+        #bookedResults {
+            display: flex;
+            gap: 20px;
+            padding: 10px 0;
+            align-items: stretch;
+            scrollbar-width: thin;
+            scrollbar-color: #9ac79a #e0e0e0;
+            transition: transform 0.5s ease;
+            margin: 0 auto;
+            justify-content: center;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+        }
+        #bookedResults::-webkit-scrollbar {
+            height: 8px;
+        }
+        #bookedResults::-webkit-scrollbar-track {
+            background: #e0e0e0;
+            border-radius: 4px;
+        }
+        #bookedResults::-webkit-scrollbar-thumb {
+            background-color: #8cb98c;
+            border-radius: 4px;
+            border: 2px solid #e0e0e0;
+        }
+        #bookedResults::-webkit-scrollbar-thumb:hover {
+            background-color: #348934;
+        }
+        .ride-card, .booked-card {
+            background: rgb(229, 243, 241);
+            border-radius: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+        }
+        .booked-card {
+            min-width: 250px;
+            flex: 0 0 auto;
+            text-align: center;
+            background-color: #74bf74;
+            transition: all 0.3s ease;
+            animation: slideIn 0.5s ease forwards;
+        }
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .booked-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            color: #0c0909;
+            font-weight: 550;
+            font-size: 20px;
+        }
+        h2 {
+            text-align: center;
+        }
+        .logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="imglogo2.png" height="180px" width="180px" alt="logo">
+        </div>
+        <div class="search-form">
+            <input type="text" id="from" placeholder="From (destination)">
+            <input type="text" id="to" placeholder="To (destination)">
+            <input type="date" id="date" placeholder="Date">
+            <input type="time" id="time" placeholder="Time">
+            <input type="number" id="maxPrice" placeholder="Max Price">
+            <select id="sortBy">
+                <option value="departureDate">Sort by Date</option>
+                <option value="departureTime">Sort by Time</option>
+                <option value="price">Sort by Price</option>
+            </select>
+            <button onclick="searchRides()">Search</button>
+        </div>
+        <div id="results"></div>
+        <br>    
+        <div class="booked-rides">
+            <h2>Your Booked Rides</h2>
+            <div class="booked-rides-wrapper">
+                <div id="bookedResults"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let rideData = [];
+        let bookedRides = [];
+
+        function fetchRideData() {
+            fetch('http://localhost:3000/rides')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    rideData = data;
+                    displayResults(rideData);
+                })
+                .catch(error => {
+                    console.error('Error fetching ride data:', error);
+                });
+        }
+
+        function searchRides() {
+            const from = document.getElementById('from').value.toLowerCase();
+            const to = document.getElementById('to').value.toLowerCase();
+            const date = document.getElementById('date').value;
+            const time = document.getElementById('time').value;
+            const maxPrice = document.getElementById('maxPrice').value;
+            const sortBy = document.getElementById('sortBy').value;
+
+            let filteredRides = rideData.filter(ride => 
+                ride.seats > 0 &&
+                (!from || ride.from.toLowerCase().includes(from)) &&
+                (!to || ride.to.toLowerCase().includes(to)) &&
+                (!date || ride.departureDate === date) &&
+                (!time || ride.departureTime >= time) &&
+                (!maxPrice || ride.price <= parseInt(maxPrice))
+            );
+
+            if (sortBy === 'price') {
+                filteredRides.sort((a, b) => a.price - b.price);
+            } else {
+                filteredRides.sort((a, b) => a[sortBy].localeCompare(b[sortBy]));
+            }
+
+            displayResults(filteredRides);
+        }
+
+        function displayResults(rides) {
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = '';
+
+            rides.forEach(ride => {
+                const rideDiv = document.createElement('div');
+                rideDiv.className = 'ride-card';
+                rideDiv.innerHTML = `
+                    <h3>${ride.from.toUpperCase()} to ${ride.to.toUpperCase()}</h3>
+                    <p>Date: ${ride.departureDate}</p>
+                    <p>Time: ${ride.departureTime}</p>
+                    <p>Price: $${ride.price}</p>
+                    <p>Available Seats: ${ride.seats}</p>
+                    <button onclick="bookRide('${ride.id}')">Book</button>
+                `;
+                resultsDiv.appendChild(rideDiv);
+            });
+        }
+
+        function bookRide(rideId) {
+            const ride = rideData.find(r => r.id === rideId);
+            if (ride && ride.seats > 0) {
+                ride.seats -= 1;
+                bookedRides.push({...ride, bookingId: Date.now()});
+                alert(`You have booked a ride from ${ride.from} to ${ride.to}.`);
+                displayResults(rideData);
+                displayBookedRides();
+            } else {
+                alert('Sorry, no available seats left for this ride.');
+            }
+        }
+
+        function displayBookedRides() {
+            const bookedResultsDiv = document.getElementById('bookedResults');
+            bookedResultsDiv.innerHTML = '';
+
+            if (bookedRides.length === 0) {
+                bookedResultsDiv.innerHTML = '<p>No rides booked yet.</p>';
+                return;
+            }
+
+            bookedRides.forEach(ride => {
+                const bookedDiv = document.createElement('div');
+                bookedDiv.className = 'booked-card';
+                bookedDiv.innerHTML = `
+                    <h3>${ride.from.toUpperCase()} to ${ride.to.toUpperCase()}</h3>
+                    <p>Date: ${ride.departureDate}</p>
+                    <p>Time: ${ride.departureTime}</p>
+                    <p>Price: $${ride.price}</p>
+                    <p>Available Seats: ${ride.seats}</p>
+                `;
+                bookedResultsDiv.appendChild(bookedDiv);
+            });
+
+            // Scroll to the newest booked ride
+            bookedResultsDiv.scrollLeft = bookedResultsDiv.scrollWidth;
+        }
+
+        window.onload = fetchRideData;
+    </script>
+</body>
+</html>

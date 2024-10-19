@@ -1,0 +1,29 @@
+[
+  {
+    "from": "bangalore",
+    "to": "udupi",
+    "seats": "2",
+    "price": "22222222",
+    "departureDate": "2024-11-11",
+    "departureTime": "11:11",
+    "id": "1"
+  },
+  {
+    "from": "bangalore",
+    "to": "mysore",
+    "seats": "10",
+    "price": "33333333",
+    "departureDate": "2024-11-11",
+    "departureTime": "11:11",
+    "id": "2"
+  },
+  {
+    "from": "hassan",
+    "to": "bangalore",
+    "seats": "10",
+    "price": "33333333",
+    "departureDate": "2024-11-11",
+    "departureTime": "11:11",
+    "id": "3"
+  }
+]

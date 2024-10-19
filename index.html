@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RideShare</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="light-theme " >
+    <header>
+        <div class="container">
+            <nav class="navbar"> 
+            <div class="nav-container">
+            <div  class="logo">
+                <img src="imglogo.jpg" height="110px" width="160px" alt="logo">
+            </div>
+            <div class="nav-right">
+                
+                <div class="hiw">
+                <button id="howItWorksButton" class="nav-button">
+  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <circle cx="12" cy="12" r="10"/>
+    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+    <path d="M12 17h.01"/>
+  </svg>
+  <span>How it works</span>
+</button>
+
+<div class="overlay" id="howItWorksOverlay"></div>
+<div class="card" id="howItWorksCard">
+  <iframe src="howitworks/hiw.html"></iframe>
+</div>
+
+                </div>
+                <div class="si">
+ <div class="si">
+  <button class="nav-button" id="signinButton">
+    <span>Sign in</span>
+  </button>
+</div>
+
+<div id="signinCard" class="card">
+  <iframe src="sign.html" width="100%" height="400px" frameborder="0"></iframe>
+</div>
+
+<div class="overlay"></div>
+
+
+            </div>
+            <button class="mobile-menu-btn">
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </button>
+        </div>
+        <div class="mobile-menu">
+            <button id="howItWorksButton" class="icon-button">
+  How it works
+</button>
+
+<div class="overlay" id="howItWorksOverlay"></div>
+<div class="card" id="howItWorksCard">
+  <iframe src="/nmit/howitworks/h"></iframe>
+</div>
+
+            <button id="sign_in_btn">Sign in</button>
+        </div>
+        </div>
+    </header>
+    <h1 class="text-4xl md:text-6xl font-bold text-white text-center mb-8" style="color: rgb(63, 67, 63); ">
+                Carpool to Thousands of <br> Destinations at Low Prices
+            </h1>
+    <div class="overall">       
+        <div id="mainimage">
+        </div>
+            <div class="special">
+                <div class="findbuttons bu">
+    <button id="findRideBtn" class="rightside" onclick="window.location.href='find.html'">
+        <p id="specialp">Find a Ride</p>
+    </button>
+</div>
+                <div class="tripbuttons bu">   
+    <button id="tripbut" class="rightside" onclick="window.location.href='post.html'">
+        <p id="specialp">Post a Trip</p>
+    </button>   
+</div>
+</div>
+
+
+<hr>
+
+
+    </div> 
+    <section id="achievements" class="centre">
+    <div class="container">
+        <h2 class="section-title">Your Achievements</h2>
+        <div class="achievement-container">
+            <div class="achievement-card glow-effect">
+                <i class="fas fa-award"></i>
+                <h3 style="color: green;">Eco Warrior</h3>
+                <p>You've saved <span id="co2-saved">0.5</span> kg of CO2 emissions!</p>
+            </div>
+            <div class="achievement-card glow-effect">
+                <i class="fas fa-road"></i>
+                <h3 style="color: green;">Distance Covered</h3>
+                <p>You've carpooled for <span id="distance-covered">150</span> km!</p>
+            </div>
+            <div class="achievement-card glow-effect">
+                <i class="fas fa-piggy-bank"></i>
+                <h3 style="color: green;">Money Saved</h3>
+                <p>You've saved <span id="money-saved">2000</span> INR through carpooling!</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<hr>
+
+    <section id="nearby-users" class="centre">
+    <div class="container">
+        <h2 class="section-title">Nearby Carpoolers</h2>
+        <div class="user-container">
+            <div class="user-card">
+                <i class="fas fa-user-circle"></i>
+                <h3>Shreesha Vivek</h3>
+                <p>Usually starts from: Banashankari</p>
+                <p>CO2 Emissions Saved: <span id="co2-john">1.3 kg</span></p>
+                <p>Distance Covered: <span id="distance-john">444 km</span></p>
+                <p>Money Saved: <span id="money-john">7500 INR</span></p>
+            </div>
+            <div class="user-card">
+                <i class="fas fa-user-circle"></i>
+                <h3>Sohan</h3>
+                <p>Usually starts from: Yeshwantpur</p>
+                <p>CO2 Emissions Saved: <span id="co2-jane">1 kg</span></p>
+                <p>Distance Covered: <span id="distance-jane">350km</span></p>
+                <p>Money Saved: <span id="money-jane">5550 INR</span></p>
+            </div>
+            <div class="user-card">
+                <i class="fas fa-user-circle"></i>
+                <h3>Tushar Raju</h3>
+                <p>Usually starts from: Jayanagar</p>
+                <p>CO2 Emissions Saved: <span id="co2-mike">1.5 kg</span></p>
+                <p>Distance Covered: <span id="distance-mike">500 km</span></p>
+                <p>Money Saved: <span id="money-mike">8000 INR</span></p>
+            </div>
+        </div>
+    </div>
+</section>
+    <nav class="sticky-bottom-nav">
+        <button class="icon-button" onclick="window.location.href='find.html'">
+    <i class="fas fa-search"></i> Find
+</button>
+
+       <button id="leaderboardButton" class="icon-button">
+  <i class="fa-solid fa-trophy"></i> Leaderboard
+</button>
+
+<div class="overlay" id="leaderboardOverlay"></div>
+<div class="card" id="leaderboardCard">
+  <iframe src="achieve.html"></iframe>
+</div>
+
+    <button id="newCardButton" class="icon-button">
+  <i class="fas fa-user"></i> Profile
+</button>
+
+<div class="overlay" id="newCardOverlay"></div>
+<div class="card" id="newCard">
+  <iframe src="profile.html"></iframe>
+</div>
+
+
+        <button id="settingsButton" class="icon-button">
+  <i class="fas fa-cog"></i> Settings
+</button>
+
+<div class="overlay" id="settingsOverlay"></div>
+<div class="card" id="settingsCard">
+  <iframe src="settings.html"></iframe>
+</div>
+
+    </nav>
+    
+<script src="java.js"></script>
+</body>
+</html>
