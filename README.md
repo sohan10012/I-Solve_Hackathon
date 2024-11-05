@@ -26,7 +26,11 @@ This project was built for the problem statement:
 - Tusharr06
 - vivek-rg
 - Shreesha2205
-  
+
+## Screenshots
+
+![Project Screenshot](screenshot1.jpg)
+![Project Screenshot](screenshot2.jpg)
 
 
 ## Acknowledgements
