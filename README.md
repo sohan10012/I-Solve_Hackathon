@@ -21,7 +21,12 @@ This project was built for the problem statement:
 
 ## Team
 - **Team Name**: JustForFun
-- **Team Members**: sohan10012
+- **Team Members**:
+- sohan10012
+- Tusharr06
+- vivek-rg
+- Shreesha2205
+  
 
 
 ## Acknowledgements
@@ -33,4 +38,4 @@ We would like to thank the organizers and all participants for making this event
 3. Ensure the JSON file is in the correct directory for data fetching.
 
 ## Contact
-For any queries or further information, please contact [Your Email].
+For any queries or further information, please contact [sohan10012006@gmail.com].
