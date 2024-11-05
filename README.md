@@ -29,7 +29,7 @@ This project was built for the problem statement:
 
 ## Screenshots
 
-![Project Screenshot](screenshot1.jpg)
+![Project Screenshot](screenshot1.png)
 ![Project Screenshot](screenshot2.jpg)
 
 
